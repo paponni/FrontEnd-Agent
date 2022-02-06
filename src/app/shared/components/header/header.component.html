@@ -1,0 +1,29 @@
+<mat-toolbar  class="mattoolbar">
+  <mat-toolbar-row>
+    <h2 style="font-family: monospace;">EDB</h2>
+    <div fxFlex fxLayout="row" fxLayoutAlign="center">
+      <button mat-button routerLink="/clients">
+        Clients
+      </button>
+      <button mat-button routerLink="/transferEspeceForm">
+        Transfer by espece
+      </button>
+      <!-- <button mat-button routerLink="/transferEspece">
+        ListeTransferstByEspece
+      </button> -->
+      <button mat-button routerLink="/transferByStatus">
+        Consulter les Transferts
+      </button>
+
+    </div>
+    <div fxFlex fxLayout="row" fxLayoutAlign="flex-end">
+      <ul fxLayout="row" fxLayoutGap="20px">
+        <li>
+          <button mat-button (click)="logOut()">
+            Sign out
+          </button>
+        </li>
+      </ul>
+    </div>
+  </mat-toolbar-row>
+</mat-toolbar>

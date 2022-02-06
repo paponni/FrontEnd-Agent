@@ -1,0 +1,101 @@
+<app-header></app-header>
+<div class="bottomBorder">
+  <div class="container">
+    <mat-grid-list cols="2" rowHeight="16:1">
+      <mat-grid-tile class="fullheight">
+        <div fxFlex fxLayoutAlign="start center">
+          <mat-form-field appearance="outline">
+            <mat-label>STATUS</mat-label>
+            <mat-select [formControl]=""  (selectionChange)="getStatus($event.value)">
+              <!-- <mat-select-trigger>
+                {{statuss.value ? statuss.value[0] : ''}}
+                <span *ngIf="statuss.value?.length > 1" class="example-additional-selection">
+                  (+{{statuss.value.length - 1}} {{statuss.value?.length === 2 ? 'other' : 'others'}})
+                </span>
+              </mat-select-trigger> -->
+              <mat-option *ngFor="let s of statuss" [value]="s">{{s}}</mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+      </mat-grid-tile>
+      <mat-grid-tile class="fullheight">
+        <mat-form-field>
+          <mat-label>Filtre</mat-label>
+          <input matInput (keyup)="applyFilter($event)" placeholder="Ex. ium" />
+          <span class="material-icons" mat-button matSuffix mat-icon-button>
+            search
+          </span>
+        </mat-form-field>
+      </mat-grid-tile>
+    </mat-grid-list>
+  </div>
+</div>
+
+<div class="container">
+  <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+    <ng-container matColumnDef="id">
+      <th mat-header-cell *matHeaderCellDef>Numero</th>
+      <td mat-cell *matCellDef="let element">{{ element.id }}</td>
+    </ng-container>
+    <ng-container matColumnDef="ref">
+      <th mat-header-cell *matHeaderCellDef>ref</th>
+      <td mat-cell *matCellDef="let element">{{ element.ref }}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="codePin">
+      <th mat-header-cell *matHeaderCellDef>codePin</th>
+      <td mat-cell *matCellDef="let element">{{ element.codePin }}</td>
+    </ng-container>
+    <ng-container matColumnDef="montant">
+      <th mat-header-cell *matHeaderCellDef>montant</th>
+      <td mat-cell *matCellDef="let element">{{ element.montant }}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="clientSrc">
+      <th mat-header-cell *matHeaderCellDef>clientSrc</th>
+      <td mat-cell *matCellDef="let element">{{ element.clientSrc }}</td>
+    </ng-container>
+    <ng-container matColumnDef="clientDst">
+      <th mat-header-cell *matHeaderCellDef>clientDst</th>
+      <td mat-cell *matCellDef="let element">{{ element.clientDst }}</td>
+    </ng-container>
+
+
+    <ng-container matColumnDef="status">
+      <th mat-header-cell *matHeaderCellDef>status</th>
+      <td mat-cell *matCellDef="let element">{{ element.status }}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="modeCost">
+      <th mat-header-cell *matHeaderCellDef>modeCost</th>
+      <td mat-cell *matCellDef="let element">{{ element.modeCost }}</td>
+    </ng-container>
+    <ng-container matColumnDef="mode">
+      <th mat-header-cell *matHeaderCellDef>mode</th>
+      <td mat-cell *matCellDef="let element">{{ element.mode }}</td>
+    </ng-container>
+    <ng-container matColumnDef="transferDate">
+      <th mat-header-cell *matHeaderCellDef>transferDate</th>
+      <td mat-cell *matCellDef="let element">{{ element.transferDate }}</td>
+    </ng-container>
+    <ng-container matColumnDef="exprDate">
+      <th mat-header-cell *matHeaderCellDef>exprDate</th>
+      <td mat-cell *matCellDef="let element">{{ element.exprDate }}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="actions">
+      <th mat-header-cell *matHeaderCellDef>Actions</th>
+      <td mat-cell *matCellDef="let element">
+        
+        
+        <button mat-icon-button color="warn" (click)="openDialogg(element.id)">
+          <mat-icon>Servir</mat-icon>
+        </button>
+      </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+  </table>
+  <mat-paginator [pageSizeOptions]="[5, 10, 20]"></mat-paginator>
+</div>

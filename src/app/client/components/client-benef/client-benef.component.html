@@ -1,0 +1,67 @@
+<app-header></app-header>
+<div class="bottomBorder">
+  <div class="container">
+    <mat-grid-list cols="2" rowHeight="16:1">
+      <mat-grid-tile class="fullheight">
+        <div fxFlex fxLayoutAlign="start center">
+          <button mat-button class="blueButton" routerLink="/beneficiareForm">
+            Ajouter un beneficiare
+          </button>
+        </div>
+      </mat-grid-tile>
+      
+    </mat-grid-list>
+  </div>
+</div>
+
+<div class="container">
+  <table mat-table  class="mat-elevation-z8">
+    <ng-container matColumnDef="id">
+      <th mat-header-cell *matHeaderCellDef>No.</th>
+      <td mat-cell *matCellDef="let element">{{ element.id }}</td>
+    </ng-container>
+   
+
+    <ng-container matColumnDef="pieceIdentite">
+      <th mat-header-cell *matHeaderCellDef>pieceIdentite</th>
+      <td mat-cell *matCellDef="let element">{{ element.pieceIdentite }}</td>
+    </ng-container>
+    <ng-container matColumnDef="numIdentite">
+      <th mat-header-cell *matHeaderCellDef>numIdentite</th>
+      <td mat-cell *matCellDef="let element">{{ element.numIdentite }}</td>
+    </ng-container>
+    <ng-container matColumnDef="gsm">
+      <th mat-header-cell *matHeaderCellDef>gsm</th>
+      <td mat-cell *matCellDef="let element">{{ element.gsm }}</td>
+    </ng-container>
+    <ng-container matColumnDef="blackLister">
+      <th mat-header-cell *matHeaderCellDef>blackLister</th>
+      <td mat-cell *matCellDef="let element">{{ element.blackLister }}</td>
+    </ng-container>
+
+   
+
+    <ng-container matColumnDef="actions">
+      <th mat-header-cell *matHeaderCellDef>Actions</th>
+      <td mat-cell *matCellDef="let element">
+        <button mat-icon-button color="warn" (click)="openDialog(element.id)">
+          <mat-icon>delete</mat-icon>
+        </button>
+        <button
+          mat-icon-button
+          color="primary"
+          [routerLink]="['/client', element.id, 'accounts']"
+        >
+          <mat-icon>account_balance_wallet</mat-icon>
+        </button>
+        <button mat-icon-button color="warn" (click)="openDialog(element.id)">
+          <mat-icon>S</mat-icon>
+        </button>
+      </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+  </table>
+  <mat-paginator [pageSizeOptions]="[5, 10, 20]"></mat-paginator>
+</div>

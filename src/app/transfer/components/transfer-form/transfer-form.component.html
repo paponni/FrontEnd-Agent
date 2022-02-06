@@ -1,0 +1,112 @@
+<app-header></app-header>
+<div class="background">
+  <form [formGroup]="virementForm" (ngSubmit)="onFormSubmit()">
+    <div class="container">
+      <div class="whiteForm">
+        <mat-grid-list cols="1" rowHeight="12:1">
+         
+
+          <mat-grid-tile class="fullheight">
+            <mat-form-field class="formField">
+              <mat-label>Somme Total</mat-label>
+              <input
+                matInput
+                type="text"
+                formControlName="sommeTotal"
+                placeholder="XX.XX"
+              />
+            </mat-form-field>
+          </mat-grid-tile>
+
+          <mat-grid-tile>
+            <div fxFlex fxLayoutAlign="start center">
+              <mat-form-field appearance="outline">
+                <mat-label>Frais de Transfert</mat-label>
+                <mat-select [formControl]=""  (selectionChange)="getStatusFrais($event.value)">
+                  <!-- <mat-select-trigger>
+                    {{statuss.value ? statuss.value[0] : ''}}
+                    <span *ngIf="statuss.value?.length > 1" class="example-additional-selection">
+                      (+{{statuss.value.length - 1}} {{statuss.value?.length === 2 ? 'other' : 'others'}})
+                    </span>
+                  </mat-select-trigger> -->
+                  <mat-option *ngFor="let s of frais" [value]="s">{{s}}</mat-option>
+                </mat-select>
+              </mat-form-field>
+            </div>          </mat-grid-tile>
+     
+          <mat-grid-tile>
+            <div class="envoyer" fxFlex fxLayoutAlign="flex-end">
+              <button type="submit" mat-raised-button color="primary" >
+                Envoyer
+              </button>
+            </div>
+          </mat-grid-tile>
+        </mat-grid-list>
+        <mat-grid-list cols="2" [gutterSize]="'15px'">
+
+            <mat-grid-tile>
+
+          <div formArrayName="listBenef">
+            <div *ngFor="let benif of listBenef.controls; index as idx">
+              <mat-form-field class="formField">
+                <mat-label>numIdentite</mat-label>
+                <input
+                  matInput
+                  type="text"
+                  placeholder="entrez num identity"
+                  [formControlName]="idx"
+                 
+                />
+              </mat-form-field>
+            </div>
+          </div>
+          <p></p><p></p>
+          <div formArrayName="listBenef1">
+            <div *ngFor="let benif of listBenef1.controls; index as idx">
+          <mat-form-field class="formField">
+            <mat-label>gsm</mat-label>
+            <input
+              matInput
+              type="text"
+              placeholder="entrez num telephone"
+              [formControlName]="idx"
+             
+            />
+          </mat-form-field>
+            </div>
+          </div>
+            </mat-grid-tile>
+            <mat-grid-tile>
+
+        <div formArrayName="sommeBenef" class="sommeclass">
+          <div *ngFor="let s of sommeBenef.controls; index as idx">
+            
+            <mat-form-field class="formField">
+                <mat-label>montant de transfert</mat-label>
+                <input
+                  matInput
+                  type="text"
+                  placeholder="entrez somme de benef"
+                  [formControlName]="idx"
+                 
+                />
+
+              
+            </mat-form-field>
+            <button class="" mat-stroked-button		
+              color="primary" type="button" (click)="addNameField()" class="btn btn-success" [ngClass] = "'pad'">Add</button>
+              
+              <button  mat-stroked-button	
+              color="warn" (click)="deleteNameField(idx)" class="btn btn-danger">Delete</button>
+          </div>
+        </div>
+          
+            
+            
+      </mat-grid-tile>
+        
+        </mat-grid-list>
+      </div>
+    </div>
+  </form>
+</div>

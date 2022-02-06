@@ -1,0 +1,58 @@
+<app-header></app-header>
+<form [formGroup]="clientForm" (ngSubmit)="onSubmit()">
+  <div class="bottomBorder">
+    <div class="container">
+      <mat-grid-list cols="2" rowHeight="16:1">
+        <mat-grid-tile class="fullheight">
+          <div fxFlex fxLayoutAlign="start center">
+            <button
+              mat-button
+              class="blueButton"
+              type="submit"
+              value="Valider"
+              [disabled]="!clientForm.valid"
+            >
+              Valider
+            </button>
+            <button mat-button class="blueButton" (click)="reset()">
+              Rénitialiser
+            </button>
+            <button mat-button class="blueButton" routerLink="/clients">
+              Annuler
+            </button>
+          </div>
+        </mat-grid-tile>
+      </mat-grid-list>
+    </div>
+  </div>
+
+  <div class="container content">
+    <mat-grid-list cols="2" rowHeight="6:1">
+      <mat-grid-tile>
+        <mat-form-field class="formField">
+          <mat-label>firstName</mat-label>
+          <input matInput type="text" formControlName="firstName" />
+        </mat-form-field>
+      </mat-grid-tile>
+      <mat-grid-tile>
+        <mat-form-field class="formField">
+          <mat-label>secondName </mat-label>
+          <input matInput type="text" formControlName="secondName" />
+        </mat-form-field>
+      </mat-grid-tile>
+
+      <mat-grid-tile>
+        <mat-form-field class="formField">
+          <mat-label>cne </mat-label>
+          <input matInput type="text" formControlName="cne" />
+        </mat-form-field>
+      </mat-grid-tile>
+      <mat-grid-tile>
+        <mat-form-field class="formField">
+          <mat-label>phone</mat-label>
+          <input matInput type="text" formControlName="phone" />
+        </mat-form-field>
+      </mat-grid-tile>
+    </mat-grid-list>
+  </div>
+</form>
